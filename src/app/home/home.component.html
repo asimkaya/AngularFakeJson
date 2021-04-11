@@ -6,7 +6,7 @@
         <div [hidden]="isLoading">
           <mat-form-field>
             <mat-label>Filtre</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input />
+            <input matInput (keyup)="applyFilter($event)" placeholder="filtre" #input />
           </mat-form-field>
 
           <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
@@ -45,6 +45,7 @@
               <td class="mat-cell" colspan="4">Filtre bir veri ile uyuşmadı "{{ input.value }}"</td>
             </tr>
           </table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
         </div>
       </mat-card-subtitle>
     </mat-card-content>
