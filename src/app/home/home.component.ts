@@ -48,4 +48,25 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.dataSource.paginator.firstPage();
     }
   }
+
+  deleteUser(id: number) {
+    this.isLoading = true;
+    let confirmData = confirm('Veriyi silmek istediğine emin misin?');
+    if (confirmData) {
+      this.quoteService.deleteUser(id).subscribe((data) => {
+        this.quoteService
+          .getUsers()
+          .pipe(
+            finalize(() => {
+              this.isLoading = false;
+            })
+          )
+          .subscribe((data) => {
+            this.dataSource = new MatTableDataSource(data);
+            this.dataSource.paginator = this.paginator;
+            this.dataSource.sort = this.sort;
+          });
+      });
+    }
+  }
 }

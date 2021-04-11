@@ -34,7 +34,7 @@
               <th mat-header-cell *matHeaderCellDef>Action</th>
               <td mat-cell *matCellDef="let element">
                 <button mat-raised-button color="primary">Düzenle</button> |
-                <button mat-raised-button color="warn">Sil</button>
+                <button mat-raised-button color="warn" (click)="deleteUser(element.id)">Sil</button>
               </td>
             </ng-container>
 

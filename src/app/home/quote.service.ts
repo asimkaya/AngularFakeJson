@@ -30,9 +30,9 @@ export class QuoteService {
       .pipe(catchError(() => of('Error, could nor load Users Table')));
   }
 
-  deleteUser(): Observable<any> {
+  deleteUser(id: number): Observable<any> {
     return this.httpClient
-      .delete(routes.url, {
+      .delete<Users>(routes.url + '/' + id, {
         observe: 'body',
       })
       .pipe(catchError(() => of('Error, not deleted')));

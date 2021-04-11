@@ -1,24 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "firstname": "Kary",
-      "lastname": "Scorey",
-      "email": "kscorey0@imgur.com",
-      "gender": "Female",
-      "ip_address": "14.185.100.130",
-      "username": "kscorey0"
-    },
-    {
-      "id": 2,
-      "firstname": "Archibaldo",
-      "lastname": "McElree",
-      "email": "amcelree1@columbia.edu",
-      "gender": "Female",
-      "ip_address": "180.61.174.249",
-      "username": "amcelree1"
-    },
-    {
       "id": 3,
       "firstname": "Angelique",
       "lastname": "Sivil",
