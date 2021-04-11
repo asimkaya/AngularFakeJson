@@ -5,11 +5,21 @@ import { map, catchError } from 'rxjs/operators';
 
 const routes = {
   quote: (c: RandomQuoteContext) => `/jokes/random?category=${c.category}`,
+  url: 'http://localhost:3000/users',
 };
 
 export interface RandomQuoteContext {
   // The quote's category: 'dev', 'explicit'...
   category: string;
+}
+
+export interface Users {
+  id: number;
+  firstname: string;
+  lastname: string;
+  email: string;
+  gender: boolean;
+  ip_address: string;
 }
 
 @Injectable({
