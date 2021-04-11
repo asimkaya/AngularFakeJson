@@ -68,5 +68,6 @@ export class HomeComponent implements OnInit, AfterViewInit {
           });
       });
     }
+    this.isLoading = false;
   }
 }
