@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { finalize } from 'rxjs/operators';
 
 import { QuoteService } from './quote.service';
@@ -11,20 +12,27 @@ import { QuoteService } from './quote.service';
 export class HomeComponent implements OnInit {
   quote: string | undefined;
   isLoading = false;
+  displayedColumns: string[] = ['firstname', 'lastname', 'gender', 'ip_address', 'action'];
+  dataSource: any;
 
   constructor(private quoteService: QuoteService) {}
 
   ngOnInit() {
     this.isLoading = true;
     this.quoteService
-      .getRandomQuote({ category: 'dev' })
+      .getUsers()
       .pipe(
         finalize(() => {
           this.isLoading = false;
         })
       )
-      .subscribe((quote: string) => {
-        this.quote = quote;
+      .subscribe((data) => {
+        this.dataSource = new MatTableDataSource(data);
       });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
