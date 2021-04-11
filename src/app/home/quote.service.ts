@@ -2,25 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
+import { RandomQuoteContext, Users } from '@app/models';
 
 const routes = {
   quote: (c: RandomQuoteContext) => `/jokes/random?category=${c.category}`,
   url: 'http://localhost:3000/users',
 };
-
-export interface RandomQuoteContext {
-  // The quote's category: 'dev', 'explicit'...
-  category: string;
-}
-
-export interface Users {
-  id: number;
-  firstname: string;
-  lastname: string;
-  email: string;
-  gender: boolean;
-  ip_address: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -33,5 +20,13 @@ export class QuoteService {
       map((body: any) => body.value),
       catchError(() => of('Error, could not load joke :-('))
     );
+  }
+
+  getUsers(): Observable<any> {
+    return this.httpClient
+      .get<Users>(routes.url, {
+        observe: 'body',
+      })
+      .pipe(catchError(() => of('Error, could nor load Users Table')));
   }
 }
